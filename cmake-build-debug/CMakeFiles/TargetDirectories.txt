@@ -1,0 +1,3 @@
+/home/dmi3coder/Documents/projects/cpp/snakepit/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/dmi3coder/Documents/projects/cpp/snakepit/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/dmi3coder/Documents/projects/cpp/snakepit/cmake-build-debug/CMakeFiles/snakepit.dir
