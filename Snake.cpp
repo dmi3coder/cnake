@@ -21,11 +21,14 @@ void Snake::move(sf::RenderWindow &window) {
 	    throw eog_exception();
 	}
         sf::RectangleShape shape(sf::Vector2f(blockWidth,blockWidth));
-        shape.setPosition(taileeVector.x % screenWidth,taileeVector.y % screenHeight);
+        shape.setPosition(taileeVector.x,taileeVector.y);
         window.draw(shape);
     }
     sf::RectangleShape shape(sf::Vector2f(blockWidth,blockWidth));
-    shape.setPosition(vector.x % screenWidth,vector.y % screenHeight);
+    if(vector.x < 0 || vector.x > screenWidth || vector.y < 0 || vector.y > screenHeight){
+        throw eog_exception();
+    }
+    shape.setPosition(vector.x,vector.y);
     snakeTail.push_front(vector);
     window.draw(shape);
 }
@@ -35,9 +38,6 @@ void Snake::set_position(int x, int y) {
     vector.y = y;
 }
 
-int Snake::snakeLength() {
-    return length;
-}
 
 sf::Vector2i Snake::snakePosition() {
     return vector;

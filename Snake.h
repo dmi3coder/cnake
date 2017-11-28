@@ -27,7 +27,6 @@ public:
 
     void move(sf::RenderWindow &window);
 
-    int snakeLength();
 
     sf::Vector2i snakePosition();
 
