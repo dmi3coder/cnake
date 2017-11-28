@@ -1,17 +1,56 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <cmath>
+#include "Snake.h"
+#include "config.h"
+
 using namespace std;
 
 int main() {
-    sf::Window App(sf::VideoMode(800, 600), "myproject");
 
-    while (App.isOpen()) {
-        sf::Event Event;
-        while (App.pollEvent(Event)) {
-            if (Event.type == sf::Event::Closed)
-                App.close();
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+
+    sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML Snake", sf::Style::Close, settings);
+
+    sf::Vector2f windowCenter = sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
+
+    Snake snake;
+    snake.set_position(10*blockWidth, 20 * blockWidth);
+    window.setFramerateLimit(10);
+    while (window.isOpen()) {
+        window.clear();
+        sf::Event event;
+        snake.move(window);
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+            if (event.type == sf::Event::KeyPressed){
+                int new_x = 0, new_y = 0;
+                switch(event.key.code) {
+                    case sf::Keyboard::A:
+                    case sf::Keyboard::Left:
+                        new_x = -1; new_y = 0;
+                        break;
+                    case sf::Keyboard::D:
+                    case sf::Keyboard::Right:
+                        new_x = 1; new_y = 0;
+                        break;
+                    case sf::Keyboard::W:
+                    case sf::Keyboard::Up:
+                        new_x = 0; new_y = -1;
+                        break;
+                    case sf::Keyboard::S:
+                    case sf::Keyboard::Down:
+                        new_x = 0; new_y = 1;
+                        break;
+                }
+                snake.update_speed(new_x,new_y);
+            }
         }
-        App.display();
+        window.display();
+
     }
     return 0;
 }

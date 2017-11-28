@@ -3,7 +3,7 @@ project(snakepit)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp Snake.cpp Snake.h config.cpp config.h)
 add_executable(snakepit ${SOURCE_FILES})
 
 # Detect and add SFML
