@@ -9,18 +9,29 @@
 #include <zconf.h>
 #include "config.h"
 #include "cmath"
+#include "Food.h"
+#include <deque>
 
 class Snake {
 private:
-    int x = 0, y = 0;
-    int x_speed = 1*blockWidth;
+    sf::Vector2i vector = sf::Vector2i(0, 0);
+    int x_speed = 1 * blockWidth;
     int y_speed = 0;
-    int length = 0;
+    int length = 1;
+    std::deque<sf::Vector2i> snakeTail;
 
 public:
     void set_position(int x, int y);
+
     void update_speed(int x_speed, int y_speed);
+
     void move(sf::RenderWindow &window);
+
+    int snakeLength();
+
+    sf::Vector2i snakePosition();
+
+    void feed(Food &food);
 
 };
 
